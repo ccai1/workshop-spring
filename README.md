@@ -1,3 +1,3 @@
 # workshop-spring
 
-## Software Development Period 6
+Software Development Period 6
