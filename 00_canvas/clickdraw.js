@@ -21,7 +21,7 @@ toggle.addEventListener('click', function(e){
 // clear the canvas
 clear.addEventListener('click', function(e){
     e.preventDefault()
-    ctx.clearRect(0, 0, 600, 600)
+    // ctx.clearRect(0, 0, 600, 600)
 }
 )
 
