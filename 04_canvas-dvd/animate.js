@@ -10,6 +10,7 @@ var ctx = c.getContext("2d");
 var circle = document.getElementById("circle");
 var stopButton = document.getElementById("stop");
 var dvdButton = document.getElementById("dvd");
+var dvd;
 
 //Animaniac state variables
 
@@ -83,10 +84,11 @@ var drawDvd = function(){
 };
 
 circle.addEventListener("click", function (e){
-  if (requestID != 0){
+  if (requestID != 0 && !dvd){
     e.preventDefault();
   }
   else{
+    dvd = false;
     drawDot();
   }
 }
@@ -104,10 +106,11 @@ stopButton.addEventListener("click", function (e){
 );
 
 dvdButton.addEventListener('click', function(e){
-  if (requestID != 0){
+  if (requestID != 0 && dvd){
     e.preventDefault();
   }
   else{
+    dvd = true;
     drawDvd();
   }
 }
