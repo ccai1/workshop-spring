@@ -18,21 +18,6 @@ var radius = 0; //initial radius
 var growing = true; //shows whether or not the circle is growing
 var requestID = 0; //initial requestID
 
-//DVD state variables
-
-var rectWidth = 100; //height of image
-var rectHeight = 50; //width of image
-
-var rectX = Math.floor(Math.random() * (c.width-rectWidth));
-var rectY = Math.floor(Math.random() * (c.height-rectHeight));
-
-console.log(rectX + "," + rectY)
-console.log(c.width);
-
-var xVel = 1;
-var yVel = 1;
-
-
 //Clear function
 var clear = function(e){
   ctx.clearRect(0,0,600,600);
@@ -61,26 +46,45 @@ var drawDot = function(){
   // console.log(frame)
 };
 
-var drawDvd = function(){
-  clear();
+var setup = function(){
   window.cancelAnimationFrame(requestID);
-  console.log(requestID);
-  ctx.fillStyle = "white";
-  ctx.beginPath();
-  var dvd = new Image()
-  dvd.src = "logo_dvd.jpg";
-  ctx.fillRect(rectX- 1, rectY-1, rectWidth+2, rectHeight+2); //for testing
-  ctx.drawImage(dvd, rectX, rectY, rectWidth, rectHeight);
-  if ((rectX == c.width - rectWidth || rectX == 0) && !requestID == 0){ //checks for bounce
-    xVel = xVel * -1; //reverses velocity
-  }
-  if ((rectY == c.height - rectHeight || rectY == 0) && !requestID == 0){ //checks for bounce
-    yVel = yVel * -1; //reverses velocity
-  }
-  rectX = rectX + xVel; //shows motion
-  rectY = rectY + yVel; //shows motion
-  requestID = window.requestAnimationFrame(drawDvd); //animates
-  // console.log(frame)
+
+  //DVD variables
+
+  var rectWidth = 100; //height of image
+  var rectHeight = 50; //width of image
+
+  var rectX = Math.floor(Math.random() * (c.width-rectWidth));
+  var rectY = Math.floor(Math.random() * (c.height-rectHeight));
+
+  console.log(rectX + "," + rectY)
+  console.log(c.width);
+
+  var xVel = 1;
+  var yVel = 1;
+
+  // window.cancelAnimationFrame(requestID);
+  var dvd_draw = function() {
+    clear();
+    console.log(requestID);
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    var dvd = new Image()
+    dvd.src = "logo_dvd.jpg";
+    ctx.fillRect(rectX- 1, rectY-1, rectWidth+2, rectHeight+2); //for testing
+    ctx.drawImage(dvd, rectX, rectY, rectWidth, rectHeight);
+    if ((rectX == c.width - rectWidth || rectX == 0) && !requestID == 0){ //checks for bounce
+      xVel = xVel * -1; //reverses velocity
+    }
+    if ((rectY == c.height - rectHeight || rectY == 0) && !requestID == 0){ //checks for bounce
+      yVel = yVel * -1; //reverses velocity
+    }
+    rectX = rectX + xVel; //shows motion
+    rectY = rectY + yVel; //shows motion
+    requestID = window.requestAnimationFrame(dvd_draw); //animates
+    // console.log(frame)
+  };
+  dvd_draw();
 };
 
 circle.addEventListener("click", function (e){
@@ -106,12 +110,14 @@ stopButton.addEventListener("click", function (e){
 );
 
 dvdButton.addEventListener('click', function(e){
-  if (requestID != 0 && dvd){
-    e.preventDefault();
-  }
-  else{
-    dvd = true;
-    drawDvd();
-  }
+  setup();
+  dvd = true;
+  // if (requestID != 0 && dvd){
+  //   // e.preventDefault();
+  // }
+  // else{
+  //   dvd = true;
+  //   setup();
+  // }
 }
 );
