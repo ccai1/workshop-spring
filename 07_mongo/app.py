@@ -18,9 +18,6 @@ connection=pymongo.MongoClient(SERVER_ADDR)
 db=connection.bambi
 collection=db.nobel_prize
 
-from flask import Flask, render_template
-app = Flask(__name__)
-
 f = open("prize.json")
 data = json.load(f)
 collection.insert_many(data["prizes"])
@@ -28,11 +25,6 @@ collection.insert_many(data["prizes"])
 # with urllib.request.urlopen("") as url:
 #     data = json.loads(url.read().decode())["prizes"][0]
 #     collection.insert_one(data)
-
-@app.route('/')
-def home():
-    return render_template("/index.html")
-
 def find_subject(subject):
     l = []
     for d in collection.find({"category" : subject}):
@@ -64,7 +56,3 @@ def find_surname(surname):
 # print("test find_surname")
 # print(find_surname("Curie"))
 #
-
-if __name__=="__main__":
-    app.debug=True
-    app.run()
