@@ -31,7 +31,11 @@ collection.insert_many(data["prizes"])
 
 @app.route('/')
 def home():
-    return render_template("/index.html")
+    return render_template("/index.html",
+                            subject=find_subject("physics"),
+                            year=find_year("2018"),
+                            surname=find_surname("Curie"),
+    )
 
 def find_subject(subject):
     l = []

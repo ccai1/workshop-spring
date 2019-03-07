@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Template</h1>
+  <h1>Nobel Peace Prize</h1>
+    <h3>Physics Winner</h3>:
+      {% for each in subject %}
+        <b>{{each["year"]}}</b>
+        {% for person in each["laureates"] %}
+          {{person["firstname"]}} {{person["surname"]}}
+        {% endfor %}
+        <br>
+      {% endfor %}
+    <b>Year</b>: {{year}}<br>
+    <b>Surname</b>: {{surname}}
 </body>
 </html>
