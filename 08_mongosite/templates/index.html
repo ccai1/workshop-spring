@@ -11,8 +11,9 @@
         <br>
       {% endfor %}
       <h3>All 2018 Laureates:</h3>
-      {{year}}
         {% for each in year%}
+          {% for person in each["laureates"]%}
+            {{person["firstname"]}} {{person["surname"]}}<br>
           <!-- {{each["firstname"]}} {{each["surname"]}} -->
           <!-- {% for person in each["laureates"]%}
             {{person["firstname"]}} {{person["surname"]}}
@@ -22,6 +23,7 @@
             {{person["firstname"]}} {{person["surname"]}},
           {% endfor %}
           <br> -->
+          {% endfor %}
         {% endfor %}
     <b>Surname</b>: {{surname}}
 </body>
