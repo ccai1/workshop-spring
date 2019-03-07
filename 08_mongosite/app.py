@@ -1,7 +1,7 @@
 '''
-Cathy Cai and Shin Bamba -- Team Bambi
+Cathy Cai, Jared Asch, and Tim Marder, Team Baseball > Football
 SoftDev2 pd6
-K#07: Import/Export Bank
+K #08: Ay Mon, Go Git It From Yer Flask
 2019-03-01
 '''
 
@@ -23,6 +23,7 @@ app = Flask(__name__)
 
 f = open("prize.json")
 data = json.load(f)
+collection.remove()
 collection.insert_many(data["prizes"])
 
 # with urllib.request.urlopen("") as url:

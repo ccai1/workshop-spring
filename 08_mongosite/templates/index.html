@@ -2,11 +2,11 @@
 <html>
 <body>
   <h1>Nobel Peace Prize</h1>
-    <h3>Physics Winner</h3>:
+    <h3>Physics Winners</h3>:
       {% for each in subject %}
         <b>{{each["year"]}}</b>
         {% for person in each["laureates"] %}
-          {{person["firstname"]}} {{person["surname"]}}
+          {{person["firstname"]}} {{person["surname"]}}, 
         {% endfor %}
         <br>
       {% endfor %}
