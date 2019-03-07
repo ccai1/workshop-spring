@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Nobel Peace Prize</h1>
-    <h3>Physics Winners</h3>:
+  <h1>Nobel Peace Prize Winners</h1>
+    <h3>All Physics Laureates:</h3>
       {% for each in subject %}
         <b>{{each["year"]}}</b>
         {% for person in each["laureates"] %}
-          {{person["firstname"]}} {{person["surname"]}}, 
+          {{person["firstname"]}} {{person["surname"]}},
         {% endfor %}
         <br>
       {% endfor %}
-    <b>Year</b>: {{year}}<br>
+      <h3>All 2018 Laureates:</h3>
+      {{year}}
+        {% for each in year%}
+          <!-- {{each["firstname"]}} {{each["surname"]}} -->
+          <!-- {% for person in each["laureates"]%}
+            {{person["firstname"]}} {{person["surname"]}}
+          {% endfor %} -->
+          <!-- <b>{{each["year"]}}</b>
+          {% for person in each["laureates"] %}
+            {{person["firstname"]}} {{person["surname"]}},
+          {% endfor %}
+          <br> -->
+        {% endfor %}
     <b>Surname</b>: {{surname}}
 </body>
 </html>

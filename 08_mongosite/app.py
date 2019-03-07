@@ -15,7 +15,7 @@ in the bambi db
 import pymongo, urllib.request, json
 SERVER_ADDR="206.81.7.95"
 connection=pymongo.MongoClient(SERVER_ADDR)
-db=connection.bambi
+db=connection.prize
 collection=db.nobel_prize
 
 from flask import Flask, render_template
