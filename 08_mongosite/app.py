@@ -18,7 +18,7 @@ connection=pymongo.MongoClient(SERVER_ADDR)
 db=connection.prize
 collection=db.nobel_prize
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, redirect
 app = Flask(__name__)
 
 f = open("prize.json")
@@ -34,7 +34,7 @@ collection.insert_many(data["prizes"])
 def home():
     return render_template("/index.html",
                             subject=find_subject("physics"),
-                            year=find_year("2018"),
+                            # year=find_year("2018"),
                             surname=find_surname("Curie"),
     )
 
@@ -55,6 +55,29 @@ def find_surname(surname):
     for d in collection.find({"laureates.surname" : surname}):
         l.append(d)
     return l
+
+@app.route("/year", methods = ["POST"])
+def year():
+    year = request.form.get("year")
+    return render_template("/index.html",
+                            subject=find_subject("physics"),
+                            year=find_year(year),
+                            surname=find_surname("Curie"))
+
+@app.route("/change_ip", methods = ["POST"])
+def change_ip():
+    IP = request.form.get("new_ip")
+
+    SERVER_ADDR = IP
+    connection = pymongo.MongoClient(SERVER_ADDR)
+    print(connection.database_names())
+    db = connection.bambi
+    collection = db.nobel_prize
+
+    f = open("prize.json")
+    data = json.load(f)
+    collection.insert_many(data["prizes"])
+    return redirect(url_for("home"))
 
 #
 # print("-----------")
