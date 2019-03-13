@@ -58,27 +58,32 @@ def find_surname(surname):
 
 @app.route("/year", methods = ["POST"])
 def year():
-    year = request.form.get("year")
-    return render_template("/index.html",
-                            subject=find_subject("physics"),
-                            year=find_year(year),
-                            surname=find_surname("Curie"))
+    try:
+        year = request.form.get("year")
+        return render_template("/index.html",
+                                subject=find_subject("physics"),
+                                year=find_year(year),
+                                surname=find_surname("Curie"))
+    except:
+        return redirect(url_for("home"))
 
 @app.route("/change_ip", methods = ["POST"])
 def change_ip():
-    IP = request.form.get("new_ip")
+    try:
+        IP = request.form.get("new_ip")
 
-    SERVER_ADDR = IP
-    connection = pymongo.MongoClient(SERVER_ADDR)
-    print(connection.database_names())
-    db = connection.bambi
-    collection = db.nobel_prize
+        SERVER_ADDR = IP
+        connection = pymongo.MongoClient(SERVER_ADDR)
+        print(connection.database_names())
+        db = connection.bambi
+        collection = db.nobel_prize
 
-    f = open("prize.json")
-    data = json.load(f)
-    collection.insert_many(data["prizes"])
-    return redirect(url_for("home"))
-
+        f = open("prize.json")
+        data = json.load(f)
+        collection.insert_many(data["prizes"])
+        return redirect(url_for("home"))
+    except:
+        return redirect(url_for("home"))
 #
 # print("-----------")
 # print("test find_subject")
