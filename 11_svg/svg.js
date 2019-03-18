@@ -1,7 +1,7 @@
 // Jared Asch, Cathy Cai, Tim Marder - Team Spongebob
 // SoftDev2 pd6
-// K #10: Ask Circles [Change || Die]
-// 2019-03-14
+// K #11: Ask Circles [Change || Die] …While On The Go
+// 2019-03-18
 
 var pic = document.getElementById("vimage");
 
@@ -28,6 +28,13 @@ function line(x1, y1, x2, y2){
 function clearSvg(){
     while(pic.firstChild){
         pic.removeChild(pic.firstChild);
+    }
+}
+
+function moveSvg(){
+    for(dot in pic.children){
+        dot.setAttribute("cx", dot.getAttribute("cx") + 1);
+        dot.setAttribute("cy", dot.getAttribute("cy") + 1);
     }
 }
 
