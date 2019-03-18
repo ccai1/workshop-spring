@@ -32,9 +32,9 @@ function clearSvg(){
 }
 
 function moveSvg(){
-    for(dot in pic.children){
-        dot.setAttribute("cx", dot.getAttribute("cx") + 1);
-        dot.setAttribute("cy", dot.getAttribute("cy") + 1);
+    for(d in pic.children){
+        d.setAttribute("cx", d.getAttribute("cx") + 1);
+        d.setAttribute("cy", d.getAttribute("cy") + 1);
     }
 }
 
